@@ -1,14 +1,17 @@
-var data = [["I felt creative",88,8,4],["I felt an emotional reaction",66,22,12],["I learned something new about the text",63,24,13],["It confirmed my understanding of the text",57,33,10],["It jogged my memory",50,35,15],["The Wordle confused me",5,9,86]]
+var data = [{"text": "I felt creative", "agree": 88, "neutral": 8, "disagree": 4}, {"text":"I felt an emotional reaction", "agree":66, "neutral": 22, "disagree": 12}, {"text":"I learned something new about the text", "agree":63, "neutral": 24, "disagree": 13}, {"text":"It confirmed my understanding of the text", "agree":57, "neutral": 33, "disagree": 10}, {"text":"It jogged my memory", "agree":50, "neutral": 35, "disagree": 15}, {"text":"The Wordle confused me", "agree":5, "neutral": 9, "disagree": 86}];
 
-d3.select("body").append("svg");
+d3.select("body").append("svg")
+	.attr("width", 1000)
+    .attr("height", 600);
 
-for (da of data){
-	d3.select("svg").selectAll("text")
-		.data(data)
-		.enter()
-		.append("text")
-		.attr("x",50)
-		.attr("y", function(d,i) { return (10 + i * 20);})
-		.text(da[0]);
+var div = d3.select("svg").selectAll("text").data(data).enter();
+div.append("text")
+	.attr("x",50)
+	.attr("y", function(d,i) { return (40 + i * 40);})
+	.text(function(d,i) { return d[0];});	
+
+for (element of data) {
+	div.append("rect").attr("x", 10).attr("y", 10).attr("width", 50).attr("height", 100);	
 }
+
 
